@@ -17,7 +17,7 @@ public class P3Validator : IValidator<int>
 {
     public bool Validate(int input)
     {
-        if (input > 100)
+        if (input < 5)
             return false;
 
         return true;

@@ -30,7 +30,8 @@ T AddAll<T>(T[] values)
 var mapPoint = new MapPoint
 {
     NearestCity = "STOCKHOLM",
-    GpsCoordinates = "59° 20' 4.5276'' N 18° 3' 47.6640'' E"
+    GpsCoordinates = "59° 20' 4.5276'' N 18° 3' 47.6640'' E",
+    P3 = 3
 };
 
 var result = ValidateMapPoint(mapPoint);
@@ -55,15 +56,26 @@ bool ValidateMapPoint(MapPoint mapPoint)
     return nearestCityResult && coordinateResult;
 }
 
-IValidator<Y> GetValidator<T, Y>(string property)
+
+IValidator GetValidator<T>(string property)
 {
-    var validatorType = typeof(T)
-        .GetProperty(property)
-        .GetCustomAttribute(typeof(ValidateAttribute<IValidator<Y>, Y>))
+    PropertyInfo propertyInfo = typeof(T)
+            .GetProperty(property);
+    Type propType = propertyInfo.PropertyType;
+
+    var validatorType = propertyInfo.GetCustomAttribute(typeof(ValidateAttribute<,>))
         .GetType()
         .GenericTypeArguments.First();
 
-    return Activator.CreateInstance(validatorType)
-            as IValidator<Y>;
+    switch (propType)
+    {
+        case Type t when t == typeof(string):
+            validatorType = typeof(StringValidator);
+            break;
+        default:
+            break;
+    }
+
+    return Activator.CreateInstance(validatorType) as IValidator<string>;
 }
 
