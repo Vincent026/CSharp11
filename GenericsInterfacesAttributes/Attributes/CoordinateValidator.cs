@@ -36,8 +36,8 @@ internal class CityValidator : BaseValidator<string>, IValidator<string>
         if (propVal is not string)
             return false;
         {
-            var intVal = (string)propVal;
-            return Validate(intVal);
+            var strVal = (string)propVal;
+            return Validate(strVal);
         }
     }
 }
@@ -61,8 +61,8 @@ public class CoordinateValidator : BaseValidator<string>, IValidator<string>
         if (propVal is not string)
             return false;
         {
-            var intVal = (string)propVal;
-            return Validate(intVal);
+            var strVal = (string)propVal;
+            return Validate(strVal);
         }
     }
 }
