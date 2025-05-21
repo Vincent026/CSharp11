@@ -67,15 +67,8 @@ IValidator<U> GetValidator<T, U>(string property)
         .GetType()
         .GenericTypeArguments.First();
 
-    //switch (propType)
-    //{
-    //    case Type t when t == typeof(string):
-    //        validatorType = typeof(StringValidator);
-    //        break;
-    //    default:
-    //        break;
-    //}
-
-    return Activator.CreateInstance(validatorType) as IValidator<U>;
+    var result = Activator.CreateInstance(validatorType) as IValidator<U>;
+    result.PI = propertyInfo;
+    return result;
 }
 
