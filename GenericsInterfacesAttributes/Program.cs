@@ -57,7 +57,7 @@ bool ValidateMapPoint(MapPoint mapPoint)
 }
 
 
-IValidator GetValidator<T>(string property)
+IValidator<U> GetValidator<T, U>(string property)
 {
     PropertyInfo propertyInfo = typeof(T)
             .GetProperty(property);
@@ -67,15 +67,15 @@ IValidator GetValidator<T>(string property)
         .GetType()
         .GenericTypeArguments.First();
 
-    switch (propType)
-    {
-        case Type t when t == typeof(string):
-            validatorType = typeof(StringValidator);
-            break;
-        default:
-            break;
-    }
+    //switch (propType)
+    //{
+    //    case Type t when t == typeof(string):
+    //        validatorType = typeof(StringValidator);
+    //        break;
+    //    default:
+    //        break;
+    //}
 
-    return Activator.CreateInstance(validatorType) as IValidator<string>;
+    return Activator.CreateInstance(validatorType) as IValidator<U>;
 }
 
