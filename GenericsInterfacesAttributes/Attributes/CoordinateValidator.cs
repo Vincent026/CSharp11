@@ -6,12 +6,20 @@ public abstract class BaseValidator<U> : IValidator<U>
 {
     public PropertyInfo PI { get; set; } = null!;
 
-    public abstract bool Validate(U input);
+    protected object propVal;
+
+    public virtual bool ValidateInstance(MapPoint mp)
+    {
+        propVal = PI.GetValue(mp);
+        if (propVal == null)
+            return false;
+        return true;
+    }
 }
 
 internal class CityValidator : BaseValidator<string>, IValidator<string>
 {
-    public override bool Validate(string input)
+    public bool Validate(string input)
     {
         if (!(input.ToUpper() == input))
             return false;
@@ -20,11 +28,23 @@ internal class CityValidator : BaseValidator<string>, IValidator<string>
 
         return true;
     }
+
+    public override bool ValidateInstance(MapPoint mp)
+    {
+        if (!base.ValidateInstance(mp))
+            return false;
+        if (propVal is not string)
+            return false;
+        {
+            var intVal = (string)propVal;
+            return Validate(intVal);
+        }
+    }
 }
 
 public class CoordinateValidator : BaseValidator<string>, IValidator<string>
 {
-    public override bool Validate(string input)
+    public bool Validate(string input)
     {
         if (!(input.ToLower() == input))
             return false;
@@ -33,15 +53,39 @@ public class CoordinateValidator : BaseValidator<string>, IValidator<string>
 
         return true;
     }
+
+    public override bool ValidateInstance(MapPoint mp)
+    {
+        if (!base.ValidateInstance(mp))
+            return false;
+        if (propVal is not string)
+            return false;
+        {
+            var intVal = (string)propVal;
+            return Validate(intVal);
+        }
+    }
 }
 
 public class P3Validator : BaseValidator<int>, IValidator<int>
 {
-    public override bool Validate(int input)
+    public bool Validate(int input)
     {
         if (input < 5)
             return false;
 
         return true;
+    }
+
+    public override bool ValidateInstance(MapPoint mp)
+    {
+        if (!base.ValidateInstance(mp))
+            return false;
+        if (propVal is not int)
+            return false;
+        {
+            int intVal = (int)propVal;
+            return Validate(intVal);
+        }
     }
 }

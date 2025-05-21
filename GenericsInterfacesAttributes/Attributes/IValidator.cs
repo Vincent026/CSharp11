@@ -4,9 +4,7 @@ namespace m3GenericsInterfacesAttributes.Attributes;
 
 public interface IValidator<Y>
 {
-    abstract bool Validate(Y input);
+    abstract bool ValidateInstance(MapPoint mp);
 
-    PropertyInfo PI { get; set; }   
-
-    static Type MyType { get { return typeof(Y); } }
+    PropertyInfo PI { get; set; }
 }

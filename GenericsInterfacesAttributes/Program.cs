@@ -26,7 +26,6 @@ T AddAll<T>(T[] values)
     return result;
 }
 
-
 var mapPoint = new MapPoint
 {
     NearestCity = "STOCKHOLM",
@@ -41,21 +40,19 @@ bool ValidateMapPoint(MapPoint mapPoint)
     var cityValidator =
         GetValidator<MapPoint, string>(nameof(mapPoint.NearestCity));
     var nearestCityResult =
-        cityValidator.Validate(mapPoint.NearestCity);
+        cityValidator.ValidateInstance(mapPoint);
 
     var coordinateValidator =
         GetValidator<MapPoint, string>(nameof(mapPoint.GpsCoordinates));
     var coordinateResult =
-        coordinateValidator.Validate(mapPoint.GpsCoordinates);
+        coordinateValidator.ValidateInstance(mapPoint);
 
     var p3Validator =
         GetValidator<MapPoint, int>(nameof(mapPoint.P3));
-    var p3Result =
-        p3Validator.Validate(mapPoint.P3);
+    var p3Result = p3Validator.ValidateInstance(mapPoint);
 
     return nearestCityResult && coordinateResult;
 }
-
 
 IValidator<U> GetValidator<T, U>(string property)
 {
@@ -71,4 +68,3 @@ IValidator<U> GetValidator<T, U>(string property)
     result.PI = propertyInfo;
     return result;
 }
-
