@@ -1,5 +1,5 @@
 ﻿namespace m3GenericsInterfacesAttributes.Attributes;
-internal class CityValidator : IValidator
+internal class CityValidator : IValidator<string>
 {
     public bool Validate(string input)
     {

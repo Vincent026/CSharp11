@@ -1,5 +1,6 @@
 ﻿namespace m3GenericsInterfacesAttributes.Attributes;
-public class CoordinateValidator : IValidator
+
+public class CoordinateValidator : IValidator<string>
 {
     public bool Validate(string input)
     {
@@ -12,3 +13,13 @@ public class CoordinateValidator : IValidator
     }
 }
 
+public class P3Validator : IValidator<int>
+{
+    public bool Validate(int input)
+    {
+        if (input > 100)
+            return false;
+
+        return true;
+    }
+}

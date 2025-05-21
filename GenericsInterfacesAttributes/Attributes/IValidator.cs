@@ -1,6 +1,6 @@
 ﻿namespace m3GenericsInterfacesAttributes.Attributes;
-public interface IValidator
+public interface IValidator<Y>
 {
-    bool Validate(string input);
+    bool Validate(Y input);
 }
 
