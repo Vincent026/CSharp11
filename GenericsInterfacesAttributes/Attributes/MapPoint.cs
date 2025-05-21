@@ -1,13 +1,13 @@
 ﻿namespace m3GenericsInterfacesAttributes.Attributes;
 public class MapPoint
 {
-    [Validate<CityValidator, string>]
+    [Validate<CityValidator>]
     public string NearestCity { get; set; }
 
-    [Validate<CoordinateValidator, string>]
+    [Validate<CoordinateValidator>]
     public string GpsCoordinates { get; set; }
 
-    [Validate<P3Validator, int>]
+    [Validate<P3Validator>]
     public int P3 { get; set; }
 
     [ValidateParameter(nameof(startingPnt))]

@@ -63,7 +63,7 @@ IValidator<U> GetValidator<T, U>(string property)
             .GetProperty(property);
     Type propType = propertyInfo.PropertyType;
 
-    var validatorType = propertyInfo.GetCustomAttribute(typeof(ValidateAttribute<,>))
+    var validatorType = propertyInfo.GetCustomAttribute(typeof(ValidateAttribute<>))
         .GetType()
         .GenericTypeArguments.First();
 
