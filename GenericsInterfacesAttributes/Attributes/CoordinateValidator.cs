@@ -1,7 +1,7 @@
 ﻿namespace m3GenericsInterfacesAttributes.Attributes;
 
 
-public class CoordinateValidator : BaseValidator<string>, IValidator<string>
+public class CoordinateValidator : BaseValidator<string>, IValidator
 {
     public bool Validate(string input)
     {

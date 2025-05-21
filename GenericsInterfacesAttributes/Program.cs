@@ -54,7 +54,7 @@ bool ValidateMapPoint(MapPoint mapPoint)
     return nearestCityResult && coordinateResult;
 }
 
-IValidator<U> GetValidator<T, U>(string property)
+IValidator GetValidator<T, U>(string property)
 {
     PropertyInfo propertyInfo = typeof(T)
             .GetProperty(property);
@@ -64,7 +64,7 @@ IValidator<U> GetValidator<T, U>(string property)
         .GetType()
         .GenericTypeArguments.First();
 
-    var result = Activator.CreateInstance(validatorType) as IValidator<U>;
+    var result = Activator.CreateInstance(validatorType) as IValidator;
     result.PI = propertyInfo;
     return result;
 }

@@ -2,7 +2,7 @@
 
 namespace m3GenericsInterfacesAttributes.Attributes;
 
-internal class CityValidator : BaseValidator<string>, IValidator<string>
+internal class CityValidator : BaseValidator<string>, IValidator
 {
     public bool Validate(string input)
     {

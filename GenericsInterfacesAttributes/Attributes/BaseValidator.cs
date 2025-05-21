@@ -2,7 +2,7 @@
 
 namespace m3GenericsInterfacesAttributes.Attributes;
 
-public abstract class BaseValidator<U> : IValidator<U>
+public abstract class BaseValidator<U> : IValidator
 {
     public PropertyInfo PI { get; set; } = null!;
 

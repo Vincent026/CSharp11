@@ -2,7 +2,7 @@
 
 namespace m3GenericsInterfacesAttributes.Attributes;
 
-public interface IValidator<Y>
+public interface IValidator
 {
     abstract bool ValidateInstance(MapPoint mp);
 

@@ -1,6 +1,6 @@
 ﻿namespace m3GenericsInterfacesAttributes.Attributes;
 
-public class P3Validator : BaseValidator<int>, IValidator<int>
+public class P3Validator : BaseValidator<int>, IValidator
 {
     public bool Validate(int input)
     {
